@@ -9,9 +9,6 @@ import {
   CharacterCount,
   CodeBlock,
   Color,
-  Details,
-  DetailsContent,
-  DetailsSummary,
   Document,
   Dropcursor,
   Emoji,
@@ -41,7 +38,6 @@ import {
   TrailingNode,
   Typography,
   Underline,
-  emojiSuggestion,
   Columns,
   Column,
   TaskItem,
@@ -124,10 +120,6 @@ export const ExtensionKit = ({ provider }: ExtensionKitProps) => [
           .run();
       });
     },
-  }),
-  Emoji.configure({
-    enableEmoticons: true,
-    suggestion: emojiSuggestion,
   }),
   TextAlign.extend({
     addKeyboardShortcuts() {
