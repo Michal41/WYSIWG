@@ -1,43 +1,53 @@
-import { Icon } from '@/components/ui/Icon'
-import { Toolbar } from '@/components/ui/Toolbar'
-import DragHandle from '@tiptap-pro/extension-drag-handle-react'
-import { Editor } from '@tiptap/react'
+import { Icon } from "@/components/ui/Icon";
+import { Toolbar } from "@/components/ui/Toolbar";
+import { Editor } from "@tiptap/react";
 
-import * as Popover from '@radix-ui/react-popover'
-import { Surface } from '@/components/ui/Surface'
-import { DropdownButton } from '@/components/ui/Dropdown'
-import useContentItemActions from './hooks/useContentItemActions'
-import { useData } from './hooks/useData'
-import { useEffect, useState } from 'react'
+import * as Popover from "@radix-ui/react-popover";
+import { Surface } from "@/components/ui/Surface";
+import { DropdownButton } from "@/components/ui/Dropdown";
+import useContentItemActions from "./hooks/useContentItemActions";
+import { useData } from "./hooks/useData";
+import { useEffect, useState } from "react";
+import { BubbleMenu as BaseBubbleMenu } from "@tiptap/react";
 
 export type ContentItemMenuProps = {
-  editor: Editor
-}
+  editor: Editor;
+  appendTo: React.RefObject<HTMLElement>;
+};
 
-export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const data = useData()
-  const actions = useContentItemActions(editor, data.currentNode, data.currentNodePos)
+export const ContentItemMenu = ({ editor, appendTo }: ContentItemMenuProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const data = useData();
+  const actions = useContentItemActions(
+    editor,
+    data.currentNode,
+    data.currentNodePos,
+  );
 
   useEffect(() => {
     if (menuOpen) {
-      editor.commands.setMeta('lockDragHandle', true)
+      editor.commands.setMeta("lockDragHandle", true);
     } else {
-      editor.commands.setMeta('lockDragHandle', false)
+      editor.commands.setMeta("lockDragHandle", false);
     }
-  }, [editor, menuOpen])
+  }, [editor, menuOpen]);
 
   return (
-    <DragHandle
-      pluginKey="ContentItemMenu"
+    <BaseBubbleMenu
       editor={editor}
-      onNodeChange={data.handleNodeChange}
+      pluginKey="textMenu"
+      shouldShow={() => true}
+      updateDelay={0}
       tippyOptions={{
-        offset: [-2, 16],
-        zIndex: 99,
+        popperOptions: {
+          modifiers: [{ name: "flip", enabled: false }],
+        },
+        onHidden: () => {
+          setMenuOpen(false);
+        },
       }}
     >
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-0.5 absolute top-0 left-[0px]">
         <Toolbar.Button onClick={actions.handleAdd}>
           <Icon name="Plus" />
         </Toolbar.Button>
@@ -48,7 +58,7 @@ export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
             </Toolbar.Button>
           </Popover.Trigger>
           <Popover.Content side="bottom" align="start" sideOffset={8}>
-            <Surface className="p-2 flex flex-col min-w-[16rem]">
+            <Surface className="p-2 flex flex-col min-w-[16rem] z-50 ml-5">
               <Popover.Close>
                 <DropdownButton onClick={actions.resetTextFormatting}>
                   <Icon name="RemoveFormatting" />
@@ -81,6 +91,6 @@ export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
           </Popover.Content>
         </Popover.Root>
       </div>
-    </DragHandle>
-  )
-}
+    </BaseBubbleMenu>
+  );
+};

@@ -1,21 +1,21 @@
-import { mergeAttributes, Node } from '@tiptap/core'
-import { ReactNodeViewRenderer } from '@tiptap/react'
-import { v4 as uuid } from 'uuid'
+import { mergeAttributes, Node } from "@tiptap/core";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import { v4 as uuid } from "uuid";
 
-import { AiWriterView } from './components/AiWriterView'
+import { AiWriterView } from "./components/AiWriterView";
 
-declare module '@tiptap/core' {
+declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     aiWriter: {
-      setAiWriter: () => ReturnType
-    }
+      setAiWriter: () => ReturnType;
+    };
   }
 }
 
 export const AiWriter = Node.create({
-  name: 'aiWriter',
+  name: "aiWriter",
 
-  group: 'block',
+  group: "block",
 
   draggable: true,
 
@@ -26,33 +26,33 @@ export const AiWriter = Node.create({
       HTMLAttributes: {
         class: `node-${this.name}`,
       },
-    }
+    };
   },
 
   addAttributes() {
     return {
       id: {
         default: undefined,
-        parseHTML: element => element.getAttribute('data-id'),
-        renderHTML: attributes => ({
-          'data-id': attributes.id,
+        parseHTML: (element) => element.getAttribute("data-id"),
+        renderHTML: (attributes) => ({
+          "data-id": attributes.id,
         }),
       },
       authorId: {
         default: undefined,
-        parseHTML: element => element.getAttribute('data-author-id'),
-        renderHTML: attributes => ({
-          'data-author-id': attributes.authorId,
+        parseHTML: (element) => element.getAttribute("data-author-id"),
+        renderHTML: (attributes) => ({
+          "data-author-id": attributes.authorId,
         }),
       },
       authorName: {
         default: undefined,
-        parseHTML: element => element.getAttribute('data-author-name'),
-        renderHTML: attributes => ({
-          'data-author-name': attributes.authorName,
+        parseHTML: (element) => element.getAttribute("data-author-name"),
+        renderHTML: (attributes) => ({
+          "data-author-name": attributes.authorName,
         }),
       },
-    }
+    };
   },
 
   parseHTML() {
@@ -60,11 +60,14 @@ export const AiWriter = Node.create({
       {
         tag: `div.node-${this.name}`,
       },
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['div', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return [
+      "div",
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+    ];
   },
 
   addCommands() {
@@ -83,12 +86,12 @@ export const AiWriter = Node.create({
               },
             })
             .run(),
-    }
+    };
   },
 
   addNodeView() {
-    return ReactNodeViewRenderer(AiWriterView)
+    return ReactNodeViewRenderer(AiWriterView);
   },
-})
+});
 
-export default AiWriter
+export default AiWriter;
