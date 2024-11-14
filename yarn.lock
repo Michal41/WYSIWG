@@ -1499,35 +1499,6 @@
   dependencies:
     tippy.js "^6.3.1"
 
-"@tiptap-pro/extension-file-handler@^2.11.9":
-  version "2.14.0"
-  resolved "https://registry.tiptap.dev/@tiptap-pro%2fextension-file-handler/-/extension-file-handler-2.14.0.tgz"
-  integrity sha512-EaVyhHayEdGNLL5oAovNfS3p1sKp3DBsAu9PY3Fq3P9ozesZANKsA4erOQRcZOlnyCgCb4H+VxafwUedbFmxpw==
-
-"@tiptap-pro/extension-mathematics@^2.11.9":
-  version "2.14.0"
-  resolved "https://registry.tiptap.dev/@tiptap-pro%2fextension-mathematics/-/extension-mathematics-2.14.0.tgz"
-  integrity sha512-4FXHL7yggiF14I61kw1IcT9J+oy/ciKWYFGqSv3EgF8xHTdAYP6BRkdtPbRC6vJSNxnVzQnChef9JgMmdOwHDQ==
-
-"@tiptap-pro/extension-node-range@^2.11.9":
-  version "2.14.0"
-  resolved "https://registry.tiptap.dev/@tiptap-pro%2fextension-node-range/-/extension-node-range-2.14.0.tgz"
-  integrity sha512-kh3lTt2HSgaStuqQ6cAfkJRc8Xi/953keh1C6tUB4Tkj/kgHRbSOmh8YR+V/VdHt9iOzfhyOf2ppEEEFstiGfA==
-
-"@tiptap-pro/extension-table-of-contents@^2.11.9":
-  version "2.14.0"
-  resolved "https://registry.tiptap.dev/@tiptap-pro%2fextension-table-of-contents/-/extension-table-of-contents-2.14.0.tgz"
-  integrity sha512-whWUBqckpceBaFssf2JLxWP6EMo0GdEWlbyU8cRfdgSn+bUm8XfXFZ5DovhBuvWvCGqPiFEtytPvBR781/noSQ==
-  dependencies:
-    uuid "^10.0.0"
-
-"@tiptap-pro/extension-unique-id@^2.11.9":
-  version "2.14.0"
-  resolved "https://registry.tiptap.dev/@tiptap-pro%2fextension-unique-id/-/extension-unique-id-2.14.0.tgz"
-  integrity sha512-4f/lKWZtlWayiEOdWxJK6FX1F+akmCCEmtOkpnJkkf3NT2zpCCTELjNsFHp5is7+KZv2ZdxsrSalHARwr3l97w==
-  dependencies:
-    uuid "^10.0.0"
-
 "@tiptap/core@^2.8.0":
   version "2.9.1"
   resolved "https://registry.npmjs.org/@tiptap/core/-/core-2.9.1.tgz"
@@ -5319,11 +5290,6 @@ util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
-
-uuid@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.npmjs.org/uuid/-/uuid-10.0.0.tgz"
-  integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
 
 uuid@^9.0.1:
   version "9.0.1"

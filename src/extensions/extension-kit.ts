@@ -66,10 +66,6 @@ export const ExtensionKit = ({ provider }: ExtensionKitProps) => [
     levels: [1, 2, 3, 4, 5, 6],
   }),
   HorizontalRule,
-  UniqueID.configure({
-    types: ["paragraph", "heading", "blockquote", "codeBlock", "table"],
-    filterTransaction: (transaction) => !isChangeOrigin(transaction),
-  }),
   StarterKit.configure({
     document: false,
     dropcursor: false,
@@ -97,30 +93,6 @@ export const ExtensionKit = ({ provider }: ExtensionKitProps) => [
     clientId: provider?.document?.clientID,
   }),
   ImageBlock,
-  FileHandler.configure({
-    allowedMimeTypes: ["image/png", "image/jpeg", "image/gif", "image/webp"],
-    onDrop: (currentEditor, files, pos) => {
-      files.forEach(async (file) => {
-        const url = await API.uploadImage(file);
-
-        currentEditor.chain().setImageBlockAt({ pos, src: url }).focus().run();
-      });
-    },
-    onPaste: (currentEditor, files) => {
-      files.forEach(async (file) => {
-        const url = await API.uploadImage(file);
-
-        return currentEditor
-          .chain()
-          .setImageBlockAt({
-            pos: currentEditor.state.selection.anchor,
-            src: url,
-          })
-          .focus()
-          .run();
-      });
-    },
-  }),
   TextAlign.extend({
     addKeyboardShortcuts() {
       return {};

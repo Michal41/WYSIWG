@@ -14,7 +14,6 @@ export { FocusClasses as Focus } from "@tiptap/extension-focus";
 export { Dropcursor } from "@tiptap/extension-dropcursor";
 export { CollaborationCursor } from "@tiptap/extension-collaboration-cursor";
 export { Subscript } from "@tiptap/extension-subscript";
-export { TableOfContents } from "@tiptap-pro/extension-table-of-contents";
 export { Superscript } from "@tiptap/extension-superscript";
 export { Paragraph } from "@tiptap/extension-paragraph";
 export { BulletList } from "@tiptap/extension-bullet-list";
@@ -22,8 +21,6 @@ export { OrderedList } from "@tiptap/extension-ordered-list";
 export { Collaboration } from "@tiptap/extension-collaboration";
 export { TaskItem } from "@tiptap/extension-task-item";
 export { TaskList } from "@tiptap/extension-task-list";
-export { FileHandler } from "@tiptap-pro/extension-file-handler";
-export { UniqueID } from "@tiptap-pro/extension-unique-id";
 
 export { Selection } from "./Selection";
 export { AiWriter } from "./AiWriter";
