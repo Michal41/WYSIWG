@@ -14,7 +14,7 @@ declare global {
 export const useBlockEditor = ({ userId, userName = 'Maxi' }: { userId?: string; userName?: string }) => {
   const editor = useEditor(
     {
-      immediatelyRender: true,
+      immediatelyRender: false,
       shouldRerenderOnTransaction: false,
       autofocus: true,
       onCreate: ctx => {
@@ -39,14 +39,8 @@ export const useBlockEditor = ({ userId, userName = 'Maxi' }: { userId?: string;
     },
     [],
   )
-  const users = useEditorState({
-    editor,
-    selector: (ctx): (EditorUser & { initials: string })[] => {
-      return []
-    },
-  })
 
   window.editor = editor
 
-  return { editor, users }
+  return { editor }
 }

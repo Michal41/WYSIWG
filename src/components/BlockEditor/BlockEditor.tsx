@@ -22,9 +22,9 @@ export const BlockEditor = () => {
   const menuContainerRef = useRef(null)
 
   const leftSidebar = useSidebar()
-  const { editor, users } = useBlockEditor({})
+  const { editor } = useBlockEditor({})
 
-  if (!editor || !users) {
+  if (!editor) {
     return null
   }
 
@@ -34,19 +34,17 @@ export const BlockEditor = () => {
       <div className="relative flex flex-col flex-1 h-full overflow-hidden">
         <EditorHeader
           editor={editor}
-          collabState={''}
-          users={users}
           isSidebarOpen={leftSidebar.isOpen}
           toggleSidebar={leftSidebar.toggle}
         />
         <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
-        {/* <ContentItemMenu editor={editor} />
+        <ContentItemMenu editor={editor} />
         <LinkMenu editor={editor} appendTo={menuContainerRef} />
         <TextMenu editor={editor} />
         <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
         <TableRowMenu editor={editor} appendTo={menuContainerRef} />
         <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
-        <ImageBlockMenu editor={editor} appendTo={menuContainerRef} /> */}
+        <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
       </div>
     </div>
   )
