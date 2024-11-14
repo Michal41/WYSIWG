@@ -10,7 +10,6 @@ import {
   Link,
   CodeBlock,
 } from "@/extensions";
-import { TableOfContentsNode } from "@/extensions/TableOfContentsNode";
 
 export const isTableGripSelected = (node: HTMLElement) => {
   let container = node;
@@ -46,7 +45,6 @@ export const isCustomNodeSelected = (editor: Editor, node: HTMLElement) => {
     AiWriter.name,
     AiImage.name,
     Figcaption.name,
-    TableOfContentsNode.name,
   ];
 
   return (

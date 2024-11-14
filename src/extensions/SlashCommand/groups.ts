@@ -180,7 +180,7 @@ export const GROUPS: Group[] = [
         description: "Insert a table of contents",
         shouldBeHidden: (editor) => editor.isActive("columns"),
         action: (editor) => {
-          editor.chain().focus().insertTableOfContents().run();
+          editor.chain().focus().run();
         },
       },
     ],

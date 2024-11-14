@@ -1,9 +1,5 @@
 "use client";
 
-import { HocuspocusProvider } from "@hocuspocus/provider";
-
-import { API } from "@/lib/api";
-
 import {
   BlockquoteFigure,
   CharacterCount,
@@ -11,9 +7,7 @@ import {
   Color,
   Document,
   Dropcursor,
-  Emoji,
   Figcaption,
-  FileHandler,
   Focus,
   FontFamily,
   FontSize,
@@ -29,7 +23,6 @@ import {
   Subscript,
   Superscript,
   Table,
-  TableOfContents,
   TableCell,
   TableHeader,
   TableRow,
@@ -42,20 +35,39 @@ import {
   Column,
   TaskItem,
   TaskList,
-  UniqueID,
 } from ".";
 
-import { ImageUpload } from "./ImageUpload";
-import { TableOfContentsNode } from "./TableOfContentsNode";
-import { isChangeOrigin } from "@tiptap/extension-collaboration";
+import { Mark } from "@tiptap/core";
 
-interface ExtensionKitProps {
-  provider?: HocuspocusProvider | null;
-}
+export const DeletionMark = Mark.create({
+  name: 'deletion',
 
-export const ExtensionKit = ({ provider }: ExtensionKitProps) => [
+  addAttributes() {
+    return {
+      style: {
+        default: 'background-color: lightcoral; text-decoration: line-through;',
+      },
+    };
+  },
+
+  parseHTML() {
+    return [
+      {
+        tag: 'span[data-type="deletion"]',
+      },
+    ];
+  },
+
+  renderHTML({ HTMLAttributes }) {
+    return ['span', { 'data-type': 'deletion', ...HTMLAttributes }, 0];
+  },
+});
+
+
+export const ExtensionKit = () => [
   Document,
   Columns,
+  DeletionMark,
   TaskList,
   TaskItem.configure({
     nested: true,
@@ -87,11 +99,6 @@ export const ExtensionKit = ({ provider }: ExtensionKitProps) => [
   Highlight.configure({ multicolor: true }),
   Underline,
   CharacterCount.configure({ limit: 50000 }),
-  TableOfContents,
-  TableOfContentsNode,
-  ImageUpload.configure({
-    clientId: provider?.document?.clientID,
-  }),
   ImageBlock,
   TextAlign.extend({
     addKeyboardShortcuts() {

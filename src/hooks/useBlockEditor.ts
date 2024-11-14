@@ -11,6 +11,20 @@ declare global {
   }
 }
 
+
+function markAllTextAsDeleted(content: any) {
+  if (content.type === 'text') {
+    content.marks = content.marks || [];
+    content.marks.push({ type: 'deletion' });
+  } else if (content.content) {
+    content.content = content.content.map(markAllTextAsDeleted);
+  }
+  return content;
+}
+
+const modifiedContent = markAllTextAsDeleted({ ...initialContent });
+
+
 export const useBlockEditor = ({
   userId,
   userName = "Maxi",
@@ -25,14 +39,12 @@ export const useBlockEditor = ({
       autofocus: true,
       onCreate: (ctx) => {
         if (ctx.editor.isEmpty) {
-          ctx.editor.commands.setContent(initialContent);
+          ctx.editor.commands.setContent(modifiedContent);
           ctx.editor.commands.focus("start", { scrollIntoView: true });
         }
       },
       extensions: [
-        ...ExtensionKit({
-          provider: null,
-        }),
+        ...ExtensionKit(),
       ],
       editorProps: {
         attributes: {
