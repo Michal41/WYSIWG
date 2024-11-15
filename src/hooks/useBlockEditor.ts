@@ -37,6 +37,72 @@ function resolvePath(content: any, path: (string | number)[]) {
   }, content);
 }
 
+function getCommonPrefixLength(str1: string, str2: string): number {
+  let i = 0;
+  while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
+    i++;
+  }
+  return i;
+}
+
+function getCommonSuffixLength(str1: string, str2: string): number {
+  let i = 0;
+  while (
+    i < str1.length &&
+    i < str2.length &&
+    str1[str1.length - 1 - i] === str2[str2.length - 1 - i]
+  ) {
+    i++;
+  }
+  return i;
+}
+
+function handleArrayModification(array: any[], index: number, difference: any) {
+  if (difference.item.kind === "D") {
+    const deletedNode = difference.item.lhs;
+    array.splice(index, 1, {
+      ...deletedNode,
+      marks: [{ type: "deletion" }],
+    });
+  } else if (difference.item.kind === "N") {
+    const newNode = difference.item.rhs;
+    array.splice(index, 0, {
+      ...newNode,
+      marks: [{ type: "addition" }],
+    });
+  }
+}
+
+function splitAndReplaceText(
+  array: any[],
+  index: number,
+  deletedText: string,
+  newText: string,
+) {
+  const commonPrefixLength = getCommonPrefixLength(deletedText, newText);
+  const commonSuffixLength = getCommonSuffixLength(deletedText, newText);
+
+  const prefix = deletedText.slice(0, commonPrefixLength);
+  const suffix = deletedText.slice(deletedText.length - commonSuffixLength);
+  const uniqueDeleted = deletedText.slice(
+    commonPrefixLength,
+    deletedText.length - commonSuffixLength,
+  );
+  const uniqueNew = newText.slice(
+    commonPrefixLength,
+    newText.length - commonSuffixLength,
+  );
+
+  const updatedNodes = [
+    { type: "text", text: prefix },
+    { type: "text", text: uniqueDeleted, marks: [{ type: "deletion" }] },
+    { type: "text", text: uniqueNew, marks: [{ type: "addition" }] },
+    { type: "text", text: suffix },
+  ].filter((node) => node.text);
+
+  array.splice(index, 1, ...updatedNodes);
+}
+
 function applyDifferences(content: any, differences: any[]) {
   differences.forEach((difference) => {
     if (difference.kind === "E") {
@@ -80,69 +146,6 @@ function applyDifferences(content: any, differences: any[]) {
     }
   });
   return content;
-}
-
-function handleArrayModification(array: any[], index: number, difference: any) {
-  if (difference.item.kind === "D") {
-    const deletedNode = difference.item.lhs;
-    array.splice(index, 1, {
-      ...deletedNode,
-      marks: [{ type: "deletion" }],
-    });
-  } else if (difference.item.kind === "N") {
-    const newNode = difference.item.rhs;
-    array.splice(index, 0, newNode);
-  }
-}
-
-function getCommonPrefixLength(str1: string, str2: string): number {
-  let i = 0;
-  while (i < str1.length && i < str2.length && str1[i] === str2[i]) {
-    i++;
-  }
-  return i;
-}
-
-function getCommonSuffixLength(str1: string, str2: string): number {
-  let i = 0;
-  while (
-    i < str1.length &&
-    i < str2.length &&
-    str1[str1.length - 1 - i] === str2[str2.length - 1 - i]
-  ) {
-    i++;
-  }
-  return i;
-}
-
-function splitAndReplaceText(
-  array: any[],
-  index: number,
-  deletedText: string,
-  newText: string,
-) {
-  const commonPrefixLength = getCommonPrefixLength(deletedText, newText);
-  const commonSuffixLength = getCommonSuffixLength(deletedText, newText);
-
-  const prefix = deletedText.slice(0, commonPrefixLength);
-  const suffix = deletedText.slice(deletedText.length - commonSuffixLength);
-  const uniqueDeleted = deletedText.slice(
-    commonPrefixLength,
-    deletedText.length - commonSuffixLength,
-  );
-  const uniqueNew = newText.slice(
-    commonPrefixLength,
-    newText.length - commonSuffixLength,
-  );
-
-  const updatedNodes = [
-    { type: "text", text: prefix },
-    { type: "text", text: uniqueDeleted, marks: [{ type: "deletion" }] },
-    { type: "text", text: uniqueNew },
-    { type: "text", text: suffix },
-  ].filter((node) => node.text);
-
-  array.splice(index, 1, ...updatedNodes);
 }
 
 const modifiedContent = applyDifferences(initialContent, differences as any[]);

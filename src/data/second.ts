@@ -53,7 +53,20 @@ export const second = {
       content: [
         {
           type: "text",
-          text: "This editor includes features like:",
+          text: "This editor includes features like: fox and fox",
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      attrs: {
+        class: null,
+        textAlign: "left",
+      },
+      content: [
+        {
+          type: "text",
+          text: "This editor includes features like: fox and fox",
         },
       ],
     },

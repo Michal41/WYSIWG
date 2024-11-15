@@ -63,10 +63,35 @@ export const DeletionMark = Mark.create({
   },
 });
 
+export const AdditionMark = Mark.create({
+  name: "addition",
+
+  addAttributes() {
+    return {
+      style: {
+        default: "background-color: lightgreen; text-decoration: underline;",
+      },
+    };
+  },
+
+  parseHTML() {
+    return [
+      {
+        tag: 'span[data-type="addition"]',
+      },
+    ];
+  },
+
+  renderHTML({ HTMLAttributes }) {
+    return ["span", { "data-type": "addition", ...HTMLAttributes }, 0];
+  },
+});
+
 export const ExtensionKit = () => [
   Document,
   Columns,
   DeletionMark,
+  AdditionMark,
   TaskList,
   TaskItem.configure({
     nested: true,
