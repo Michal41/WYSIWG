@@ -6,6 +6,7 @@ import { EditorView } from "@tiptap/pm/view";
 
 export interface MenuProps {
   editor: Editor;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   appendTo?: React.RefObject<any>;
   shouldHide?: boolean;
 }

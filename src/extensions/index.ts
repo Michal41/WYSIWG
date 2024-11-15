@@ -1,6 +1,6 @@
 "use client";
-
 export { StarterKit } from "@tiptap/starter-kit";
+
 export { Highlight } from "@tiptap/extension-highlight";
 export { CharacterCount } from "@tiptap/extension-character-count";
 export { Strike } from "@tiptap/extension-strike";

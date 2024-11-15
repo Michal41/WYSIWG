@@ -45,6 +45,7 @@ export const Menu = ({
         </Trigger>
       )}
       {withPortal ? (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <Popover.Portal className="z-9999">
           <Popover.Content asChild sideOffset={8}>
