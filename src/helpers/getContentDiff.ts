@@ -3,6 +3,9 @@ import { diff } from "deep-diff";
 
 export const getContentDiff = (oldDocument: any, newDocument: any): any => {
   const differences = diff(oldDocument, newDocument);
+  if (!differences) {
+    return newDocument;
+  }
 
   function resolvePath(content: any, path: (string | number)[]) {
     return path.reduce((node, key, index) => {
