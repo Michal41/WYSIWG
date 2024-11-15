@@ -12,10 +12,9 @@ import { BubbleMenu as BaseBubbleMenu } from "@tiptap/react";
 
 export type ContentItemMenuProps = {
   editor: Editor;
-  appendTo: React.RefObject<HTMLElement>;
 };
 
-export const ContentItemMenu = ({ editor, appendTo }: ContentItemMenuProps) => {
+export const ContentItemMenu = ({ editor }: ContentItemMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const data = useData();
   const actions = useContentItemActions(

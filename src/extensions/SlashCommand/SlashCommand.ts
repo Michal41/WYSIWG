@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Editor, Extension } from "@tiptap/core";
 import { ReactRenderer } from "@tiptap/react";
 import Suggestion, {
@@ -144,8 +145,6 @@ export const SlashCommand = Extension.create({
 
               const { view } = props.editor;
 
-              const editorNode = view.dom as HTMLElement;
-
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
                   return props.editor.storage[extensionName].rect;
@@ -196,8 +195,6 @@ export const SlashCommand = Extension.create({
 
               const { view } = props.editor;
 
-              const editorNode = view.dom as HTMLElement;
-
               const getReferenceClientRect = () => {
                 if (!props.clientRect) {
                   return props.editor.storage[extensionName].rect;
@@ -226,7 +223,7 @@ export const SlashCommand = Extension.create({
                 return new DOMRect(rect.x, yPos, rect.width, rect.height);
               };
 
-              let scrollHandler = () => {
+              const scrollHandler = () => {
                 popup?.[0].setProps({
                   getReferenceClientRect,
                 });

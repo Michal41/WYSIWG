@@ -1,4 +1,5 @@
 export class API {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public static uploadImage = async (_file: File) => {
     console.log(
       "Image upload is disabled in the demo... Please implement the API.uploadImage method in your project.",
