@@ -3,6 +3,10 @@
 export { StarterKit } from "@tiptap/starter-kit";
 export { Highlight } from "@tiptap/extension-highlight";
 export { CharacterCount } from "@tiptap/extension-character-count";
+export { Strike } from "@tiptap/extension-strike";
+export { Code } from "@tiptap/extension-code";
+export { Bold } from "@tiptap/extension-bold";
+export { Italic } from "@tiptap/extension-italic";
 export { Underline } from "@tiptap/extension-underline";
 export { Placeholder } from "@tiptap/extension-placeholder";
 export { TextAlign } from "@tiptap/extension-text-align";
@@ -23,8 +27,6 @@ export { TaskItem } from "@tiptap/extension-task-item";
 export { TaskList } from "@tiptap/extension-task-list";
 
 export { Selection } from "./Selection";
-export { AiWriter } from "./AiWriter";
-export { AiImage } from "./AiImage";
 export { Table, TableCell, TableHeader, TableRow } from "./Table";
 export { HorizontalRule } from "./HorizontalRule";
 export { Heading } from "./Heading";

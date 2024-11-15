@@ -3,6 +3,9 @@
 import {
   BlockquoteFigure,
   CharacterCount,
+  Code,
+  Italic,
+  Bold,
   CodeBlock,
   Color,
   Document,
@@ -35,6 +38,7 @@ import {
   Column,
   TaskItem,
   TaskList,
+  Strike,
 } from ".";
 
 import { Mark } from "@tiptap/core";
@@ -90,6 +94,10 @@ export const AdditionMark = Mark.create({
 export const ExtensionKit = () => [
   Document,
   Columns,
+  Italic,
+  Bold,
+  Strike,
+  Code,
   DeletionMark,
   AdditionMark,
   TaskList,

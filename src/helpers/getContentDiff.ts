@@ -120,10 +120,6 @@ export const getContentDiff = (oldDocument: any, newDocument: any): any => {
             );
           }
         } else {
-          console.error(
-            "Parent is invalid or does not contain content:",
-            parent,
-          );
         }
       } else if (difference.kind === "A") {
         const path = difference.path;

@@ -14,13 +14,13 @@ import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
 import { initialContent } from "@/data/initialContent";
-import { getContentDiff } from "@/helpers/getContentDiff";
-import { second } from "@/data/second";
+// import { getContentDiff } from "@/helpers/getContentDiff";
+// import { second } from "@/data/second";
 
 export const BlockEditor = () => {
   const menuContainerRef = useRef(null);
-  const contentWithDiff = getContentDiff(initialContent, second);
-  const { editor } = useBlockEditor({ content: contentWithDiff });
+  // const contentWithDiff = getContentDiff(initialContent, second);
+  const { editor } = useBlockEditor({ content: initialContent });
 
   if (!editor) {
     return null;
@@ -30,9 +30,6 @@ export const BlockEditor = () => {
     <div className="flex h-full" ref={menuContainerRef}>
       <div className="relative flex flex-col flex-1 h-full overflow-hidden">
         <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
-
-        {/* <ContentItemMenu editor={editor} appendTo={menuContainerRef} /> */}
-
         <LinkMenu editor={editor} appendTo={menuContainerRef} />
         <TextMenu editor={editor} />
         <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
