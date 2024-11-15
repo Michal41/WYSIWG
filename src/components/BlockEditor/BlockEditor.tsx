@@ -13,11 +13,14 @@ import ImageBlockMenu from "@/extensions/ImageBlock/components/ImageBlockMenu";
 import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
+import { initialContent } from "@/data/initialContent";
+import { getContentDiff } from "@/helpers/getContentDiff";
+import { second } from "@/data/second";
 
 export const BlockEditor = () => {
   const menuContainerRef = useRef(null);
-
-  const { editor } = useBlockEditor();
+  const contentWithDiff = getContentDiff(initialContent, second);
+  const { editor } = useBlockEditor({ content: contentWithDiff });
 
   if (!editor) {
     return null;
