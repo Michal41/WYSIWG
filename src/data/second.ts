@@ -10,7 +10,7 @@ export const second = {
       content: [
         {
           type: "text",
-          text: "Welcome to our React Block Editor Template built on top of pig",
+          text: "Welcome to our React Block Editor",
         },
         {
           type: "text",
@@ -28,43 +28,7 @@ export const second = {
         },
         {
           type: "text",
-          text: ", ",
-        },
-        {
-          type: "text",
-          marks: [
-            {
-              type: "link",
-              attrs: {
-                href: "https://nextjs.org/",
-                target: "_blank",
-                class: null,
-              },
-            },
-          ],
-          text: "Next.js",
-        },
-        {
-          type: "text",
           text: " and ",
-        },
-        {
-          type: "text",
-          marks: [
-            {
-              type: "link",
-              attrs: {
-                href: "https://tailwindcss.com/",
-                target: "_blank",
-                class: null,
-              },
-            },
-          ],
-          text: "Tailwind",
-        },
-        {
-          type: "text",
-          text: ". This project can be a good starting point for your own implementation of a block editor.",
         },
       ],
     },

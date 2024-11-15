@@ -17,7 +17,7 @@ import { TextMenu } from "../menus/TextMenu";
 export const BlockEditor = () => {
   const menuContainerRef = useRef(null);
 
-  const { editor } = useBlockEditor({});
+  const { editor } = useBlockEditor();
 
   if (!editor) {
     return null;

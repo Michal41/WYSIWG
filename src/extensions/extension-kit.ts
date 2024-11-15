@@ -40,12 +40,12 @@ import {
 import { Mark } from "@tiptap/core";
 
 export const DeletionMark = Mark.create({
-  name: 'deletion',
+  name: "deletion",
 
   addAttributes() {
     return {
       style: {
-        default: 'background-color: lightcoral; text-decoration: line-through;',
+        default: "background-color: lightcoral; text-decoration: line-through;",
       },
     };
   },
@@ -59,10 +59,9 @@ export const DeletionMark = Mark.create({
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['span', { 'data-type': 'deletion', ...HTMLAttributes }, 0];
+    return ["span", { "data-type": "deletion", ...HTMLAttributes }, 0];
   },
 });
-
 
 export const ExtensionKit = () => [
   Document,
