@@ -13,18 +13,19 @@ import ImageBlockMenu from "@/extensions/ImageBlock/components/ImageBlockMenu";
 import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
-import { initialContent } from "@/data/initialContent";
-// import { getContentDiff } from "@/helpers/getContentDiff";
-// import { second } from "@/data/second";
 
-export const BlockEditor = () => {
+export const BlockEditor = ({ content }: { content: any }) => {
   const menuContainerRef = useRef(null);
-  // const contentWithDiff = getContentDiff(initialContent, second);
-  const { editor } = useBlockEditor({ content: initialContent });
+  const { editor } = useBlockEditor({ content });
 
   if (!editor) {
     return null;
   }
+
+  const getCurrentContent = () => {
+    const content = editor.getJSON();
+    console.log(content);
+  };
 
   return (
     <div className="flex h-full" ref={menuContainerRef}>
@@ -36,6 +37,7 @@ export const BlockEditor = () => {
         <TableRowMenu editor={editor} appendTo={menuContainerRef} />
         <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
         <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
+        <button onClick={getCurrentContent}>Get Current Content</button>
       </div>
     </div>
   );

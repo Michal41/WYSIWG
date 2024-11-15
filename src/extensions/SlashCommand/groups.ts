@@ -104,16 +104,16 @@ export const GROUPS: Group[] = [
             .run();
         },
       },
-      {
-        name: "image",
-        label: "Image",
-        iconName: "Image",
-        description: "Insert an image",
-        aliases: ["img"],
-        action: (editor) => {
-          editor.chain().focus().setImageUpload().run();
-        },
-      },
+      // {
+      //   name: "image",
+      //   label: "Image",
+      //   iconName: "Image",
+      //   description: "Insert an image",
+      //   aliases: ["img"],
+      //   action: (editor) => {
+      //     editor.chain().focus().setImageUpload().run();
+      //   },
+      // },
       {
         name: "columns",
         label: "Columns",
@@ -138,17 +138,6 @@ export const GROUPS: Group[] = [
         aliases: ["hr"],
         action: (editor) => {
           editor.chain().focus().setHorizontalRule().run();
-        },
-      },
-      {
-        name: "toc",
-        label: "Table of Contents",
-        iconName: "Book",
-        aliases: ["outline"],
-        description: "Insert a table of contents",
-        shouldBeHidden: (editor) => editor.isActive("columns"),
-        action: (editor) => {
-          editor.chain().focus().run();
         },
       },
     ],

@@ -1,9 +1,10 @@
 import { BlockEditor } from "@/components/BlockEditor";
+import { initialContent } from "@/data/initialContent";
 
 export default function Home() {
   return (
     <div className="">
-      <BlockEditor />
+      <BlockEditor content={initialContent} />
     </div>
   );
 }
