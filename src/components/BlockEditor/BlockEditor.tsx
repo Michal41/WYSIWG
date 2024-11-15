@@ -14,6 +14,7 @@ import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const BlockEditor = ({ content }: { content: any }) => {
   const menuContainerRef = useRef(null);
   const { editor } = useBlockEditor({ content });
