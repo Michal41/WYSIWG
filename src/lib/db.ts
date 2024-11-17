@@ -1,4 +1,4 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db, ServerApiVersion } from "mongodb";
 
 let client: MongoClient | null = null;
 let db: Db | null = null;
@@ -7,11 +7,11 @@ const uri = process.env.MONGODB_URI as string;
 const dbName = process.env.MONGODB_DB as string;
 
 if (!uri) {
-  throw new Error("Please define the MONGODB_URI environment variable inside .env.local");
+  throw new Error("Please define the MONGODB_URI environment variable inside .env");
 }
 
 if (!dbName) {
-  throw new Error("Please define the MONGODB_DB environment variable inside .env.local");
+  throw new Error("Please define the MONGODB_DB environment variable inside .env");
 }
 
 export async function connectToDB(): Promise<Db> {
@@ -20,7 +20,13 @@ export async function connectToDB(): Promise<Db> {
   }
 
   if (!client) {
-    client = new MongoClient(uri);
+    client = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
     await client.connect();
   }
 
