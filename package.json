@@ -67,6 +67,7 @@
     "jsonwebtoken": "^9.0.2",
     "lowlight": "^3.1.0",
     "lucide-react": "^0.424.0",
+    "mongodb": "^6.10.0",
     "nanoid": "^4.0.2",
     "next": "15.0.3",
     "postcss": "8.4.27",
