@@ -1,11 +1,11 @@
 import { BlockEditor } from "@/components/BlockEditor";
 import { initialContent } from "@/data/initialContent";
-import { createTemplate } from "@/services/contractTemplates/create";
+import { index } from "@/services/contractTemplates";
 
 export default async function Home() {
   return (
     <div className="">
-      <button onClick={createTemplate}>12312</button>
+      <button onClick={index}>12312</button>
       <BlockEditor content={initialContent} />
     </div>
   );

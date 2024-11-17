@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { ServerApiVersion } from "mongodb";
 
-const MONGO_URI = process.env.MONGODB_URI
+const MONGO_URI = process.env.MONGODB_URI;
 
 if (!MONGO_URI) {
   throw new Error("Please define the MONGODB_URI environment variable.");
@@ -19,7 +19,7 @@ export const connectToDB = async () => {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-      }
+      },
     });
     console.log("Connected to MongoDB");
   } catch (error) {

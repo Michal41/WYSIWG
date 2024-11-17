@@ -7,11 +7,15 @@ const uri = process.env.MONGODB_URI as string;
 const dbName = process.env.MONGODB_DB as string;
 
 if (!uri) {
-  throw new Error("Please define the MONGODB_URI environment variable inside .env");
+  throw new Error(
+    "Please define the MONGODB_URI environment variable inside .env",
+  );
 }
 
 if (!dbName) {
-  throw new Error("Please define the MONGODB_DB environment variable inside .env");
+  throw new Error(
+    "Please define the MONGODB_DB environment variable inside .env",
+  );
 }
 
 export async function connectToDB(): Promise<Db> {
@@ -25,7 +29,7 @@ export async function connectToDB(): Promise<Db> {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-      }
+      },
     });
     await client.connect();
   }

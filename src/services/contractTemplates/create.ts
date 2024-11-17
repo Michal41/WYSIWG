@@ -8,7 +8,7 @@ export async function createTemplate() {
     name: "Sample Template",
     description: "This is a sample contract template.",
     content: { key: "value" },
-    tags: ["sample", "template"]
+    tags: ["sample", "template"],
   });
   await template.save();
   return template;

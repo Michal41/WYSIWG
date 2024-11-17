@@ -16,7 +16,7 @@ const ContractTemplateSchema: Schema = new Schema(
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.models.ContractTemplate ||
