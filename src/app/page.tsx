@@ -1,6 +1,6 @@
 import { BlockEditor } from "@/components/BlockEditor";
 import { initialContent } from "@/data/initialContent";
-import { createTemplate } from "@/services/templates/create";
+import { createTemplate } from "@/services/contractTemplates/create";
 
 export default async function Home() {
   return (
