@@ -6,6 +6,7 @@ export interface IContractTemplate extends Document {
   content: object[];
   createdAt?: Date;
   updatedAt?: Date;
+  _id: string;
 }
 
 const ContractTemplateSchema: Schema = new Schema(
