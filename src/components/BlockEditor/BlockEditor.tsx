@@ -1,7 +1,9 @@
+/* eslint-disable react/display-name */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { EditorContent } from "@tiptap/react";
-import React, { useRef } from "react";
+import React, { useRef, useImperativeHandle } from "react";
 
 import { LinkMenu } from "@/components/menus";
 
@@ -14,34 +16,47 @@ import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const BlockEditor = ({ content }: { content: any }) => {
-  const menuContainerRef = useRef(null);
-  const { editor } = useBlockEditor({ content });
+interface BlockEditorProps {
+  content: any;
+}
 
-  if (!editor) {
-    return null;
-  }
+export interface BlockEditorRef {
+  getContent: () => any;
+}
 
-  const getCurrentContent = () => {
-    const content = editor.getJSON();
-    console.log(content);
-  };
+const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
+  ({ content }, ref) => {
+    const menuContainerRef = useRef(null);
+    const { editor } = useBlockEditor({ content });
 
-  return (
-    <div className="flex h-full" ref={menuContainerRef}>
-      <div className="relative flex flex-col flex-1 h-full overflow-hidden">
-        <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
-        <LinkMenu editor={editor} appendTo={menuContainerRef} />
-        <TextMenu editor={editor} />
-        <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
-        <TableRowMenu editor={editor} appendTo={menuContainerRef} />
-        <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
-        <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
-        <button onClick={getCurrentContent}>Get Current Content</button>
+    useImperativeHandle(ref, () => ({
+      getContent: () => editor?.getJSON(),
+    }));
+
+    if (!editor) {
+      return null;
+    }
+
+    const getCurrentContent = () => {
+      const content = editor.getJSON();
+      console.log(content);
+    };
+
+    return (
+      <div className="flex h-full" ref={menuContainerRef}>
+        <div className="relative flex flex-col flex-1 h-full overflow-hidden">
+          <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
+          <LinkMenu editor={editor} appendTo={menuContainerRef} />
+          <TextMenu editor={editor} />
+          <ColumnsMenu editor={editor} appendTo={menuContainerRef} />
+          <TableRowMenu editor={editor} appendTo={menuContainerRef} />
+          <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
+          <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
+          <button onClick={getCurrentContent}>Get Current Content</button>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  },
+);
 
 export default BlockEditor;

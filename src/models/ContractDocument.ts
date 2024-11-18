@@ -1,8 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 
-export interface IContractTemplate extends Document {
-  name: string;
-  description?: string;
+export interface IContractDocument extends Document {
+  contractId: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content: any;
   createdAt?: Date;
@@ -10,10 +9,9 @@ export interface IContractTemplate extends Document {
   _id: string;
 }
 
-const ContractTemplateSchema: Schema = new Schema(
+const ContractDocumentSchema: Schema = new Schema(
   {
-    name: { type: String, required: true },
-    description: { type: String },
+    contractId: { type: String, required: true },
     content: { type: Object, required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
@@ -21,5 +19,5 @@ const ContractTemplateSchema: Schema = new Schema(
   { timestamps: true },
 );
 
-export default mongoose.models.ContractTemplate ||
-  mongoose.model<IContractTemplate>("ContractTemplate", ContractTemplateSchema);
+export default mongoose.models.ContractDocument ||
+  mongoose.model<IContractDocument>("ContractDocument", ContractDocumentSchema);
