@@ -7,6 +7,7 @@ import CreateContractMenu from "./CreateContractMenu";
 import ContractDataForm from "./ContractDataForm";
 import { BlockEditorRef } from "./BlockEditor/BlockEditor";
 import { create } from "@/services/contracts/create";
+import { useNavigate } from "react-router-dom";
 export interface ContractData {
   name: string;
   customerName: string;
@@ -16,6 +17,7 @@ const CreateContract = () => {
   const { templateId } = useParams();
   const blockEditorRef = useRef<BlockEditorRef>(null);
   const [template, setTemplate] = useState<IContractTemplate | null>(null);
+  const navigate = useNavigate();
   const [contractData, setContractData] = useState<ContractData>({
     name: "",
     customerName: "",
@@ -36,8 +38,9 @@ const CreateContract = () => {
     await create({
       name: contractData.name,
       clientName: contractData.customerName,
-      document: content,
+      document: JSON.stringify(content),
     });
+    navigate("/contracts");
   };
 
   return (
