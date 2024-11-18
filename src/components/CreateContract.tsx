@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IContractTemplate } from "@/models/ContractTemplate";
 import { show } from "@/services/contractTemplates/show";
 import BlockEditor from "./BlockEditor/BlockEditor";
 import CreateContractMenu from "./CreateContractMenu";
 import ContractDataForm from "./ContractDataForm";
-
+import { BlockEditorRef } from "./BlockEditor/BlockEditor";
+import { create } from "@/services/contracts/create";
 export interface ContractData {
   name: string;
   customerName: string;
@@ -13,6 +14,7 @@ export interface ContractData {
 
 const CreateContract = () => {
   const { templateId } = useParams();
+  const blockEditorRef = useRef<BlockEditorRef>(null);
   const [template, setTemplate] = useState<IContractTemplate | null>(null);
   const [contractData, setContractData] = useState<ContractData>({
     name: "",
@@ -29,6 +31,15 @@ const CreateContract = () => {
     fetchTemplate();
   }, [templateId]);
 
+  const createContract = async () => {
+    const content = blockEditorRef.current?.getContent();
+    await create({
+      name: contractData.name,
+      clientName: contractData.customerName,
+      document: content,
+    });
+  };
+
   return (
     <div>
       <div className="mt-4 flex flex-col justify-center items-center">
@@ -37,10 +48,12 @@ const CreateContract = () => {
           setContractData={setContractData}
         />
         <div>
-          {template?.content && <BlockEditor content={template?.content} />}
+          {template?.content && (
+            <BlockEditor content={template?.content} ref={blockEditorRef} />
+          )}
         </div>
       </div>
-      <CreateContractMenu />
+      <CreateContractMenu createContract={createContract} />
     </div>
   );
 };
