@@ -1,8 +1,11 @@
-import TemplateList from "@/components/TemplateList";
-export default async function Home() {
-  return (
-    <div className="">
-      <TemplateList />
-    </div>
-  );
+"use client";
+import { useEffect } from "react";
+
+export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.location.href = "/app";
+    }
+  }, []);
+  return <></>;
 }
