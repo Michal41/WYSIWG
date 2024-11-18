@@ -13,7 +13,7 @@ const ContractTemplateSchema: Schema = new Schema(
   {
     name: { type: String, required: true },
     description: { type: String },
-    content: { type: [Object], required: true },
+    content: { type: Object, required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
   },

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import TemplateList from "./TemplateList";
 import CreateContract from "./CreateContract";
+import Admin from "./Admin";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" Component={TemplateList} />
         <Route path="/create/:templateId" Component={CreateContract} />
+        <Route path="/admin" Component={Admin} />
       </Routes>
     </BrowserRouter>
   );
