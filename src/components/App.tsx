@@ -6,6 +6,7 @@ import TemplateList from "./TemplateList";
 import CreateContract from "./CreateContract";
 import ContractList from "./ContractList";
 import Admin from "./Admin";
+import ContractVersions from "./ContractVersions";
 
 export default function App() {
   return (
@@ -15,6 +16,10 @@ export default function App() {
         <Route path="/create/:templateId" Component={CreateContract} />
         <Route path="/admin" Component={Admin} />
         <Route path="/contracts" Component={ContractList} />
+        <Route
+          path="/contracts/:contractId/contract-documents"
+          Component={ContractVersions}
+        />
       </Routes>
     </BrowserRouter>
   );

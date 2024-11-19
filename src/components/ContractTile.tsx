@@ -10,7 +10,7 @@ const ContractTile = ({ contract }: Props) => {
   return (
     <div
       className="flex flex-col justify-center items-center border border-gray-300 rounded-md p-4 cursor-pointer"
-      onClick={() => navigate(`/foo`)}
+      onClick={() => navigate(`/contracts/${contract._id}/contract-documents`)}
     >
       <p className="text-lg font-bold">{contract.name}</p>
       <p className="text-sm text-gray-500">{contract.clientName}</p>
