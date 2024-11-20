@@ -6,8 +6,11 @@ import { IContractDocument } from "@/models/ContractDocument";
 import { IContract } from "@/models/Contract";
 import BlockEditor, { BlockEditorRef } from "./BlockEditor/BlockEditor";
 import CreateContractMenu from "./CreateContractMenu";
+import { create } from "@/services/contractDocuments/create";
+import { useNavigate } from "react-router-dom";
 
 const EditContract = () => {
+  const navigate = useNavigate();
   const { contractId } = useParams();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, setContract] = useState<IContract>();
@@ -26,13 +29,23 @@ const EditContract = () => {
     fetchContract();
   }, [contractId]);
 
+  const createNewVersionOfDocument = async () => {
+    if (!contractId) return;
+    const document = blockEditorRef.current?.getContent();
+    await create({ document: JSON.stringify(document), contractId });
+    navigate("/contract/thank-you");
+  };
+
   return (
     <div>
       <div className="mt-4 flex flex-col justify-center items-center">
         {latestDocument?.content && (
           <BlockEditor content={latestDocument?.content} ref={blockEditorRef} />
         )}
-        <CreateContractMenu createContract={() => {}} buttonLabel="Save" />
+        <CreateContractMenu
+          createContract={createNewVersionOfDocument}
+          buttonLabel="Save"
+        />
       </div>
     </div>
   );
