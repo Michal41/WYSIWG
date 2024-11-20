@@ -1,12 +1,13 @@
 import { IContractDocument } from "@/models/ContractDocument";
 import { index } from "@/services/contractDocuments";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ContractVersionTile from "./ContractVersionTile";
 import Button from "./Button";
 
 const ContractVersions = () => {
   const { contractId } = useParams();
+  const navigate = useNavigate();
   const [activeContractDocumentId, setActiveContractDocumentId] = useState<
     string[]
   >([]);
@@ -38,6 +39,14 @@ const ContractVersions = () => {
     }
   };
 
+  const compareContractVersions = () => {
+    if (activeContractDocumentId.length === 2) {
+      navigate(
+        `/contracts/${contractId}/compare/${activeContractDocumentId[0]}/${activeContractDocumentId[1]}`,
+      );
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center gap-4 mt-4">
       {contractDocuments.map((contractDocument) => (
@@ -48,7 +57,7 @@ const ContractVersions = () => {
           onClick={() => addContractToActive(contractDocument._id)}
         />
       ))}
-      <Button label="Compare" onClick={() => setActiveContractDocumentId([])} />
+      <Button label="Compare" onClick={compareContractVersions} />
     </div>
   );
 };

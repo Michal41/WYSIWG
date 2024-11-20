@@ -8,6 +8,7 @@ import ContractList from "./ContractList";
 import Admin from "./Admin";
 import ContractVersions from "./ContractVersions";
 import EditContract from "./EditContract";
+import CompareContractVersions from "./CompareContractVersions";
 
 export default function App() {
   return (
@@ -22,6 +23,10 @@ export default function App() {
           Component={ContractVersions}
         />
         <Route path="/contracts/:contractId/edit" Component={EditContract} />
+        <Route
+          path="/contracts/:contractId/compare/:contractVersionFromId/:contractVersionToId"
+          Component={CompareContractVersions}
+        />
       </Routes>
     </BrowserRouter>
   );
