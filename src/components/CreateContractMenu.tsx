@@ -2,9 +2,13 @@ import React from "react";
 
 interface CreateContractMenuProps {
   createContract: () => void;
+  buttonLabel?: string;
 }
 
-const CreateContractMenu = ({ createContract }: CreateContractMenuProps) => {
+const CreateContractMenu = ({
+  createContract,
+  buttonLabel = "Create",
+}: CreateContractMenuProps) => {
   return (
     <div className="fixed bottom-0 w-full">
       <div className="flex justify-center items-center mb-5 gap-4">
@@ -12,7 +16,7 @@ const CreateContractMenu = ({ createContract }: CreateContractMenuProps) => {
           className="bg-[#1a1919] text-white p-2 rounded-md px-4"
           onClick={createContract}
         >
-          Create
+          {buttonLabel}
         </button>
         <button className="bg-[#1a1919] text-white p-2 rounded-md px-4">
           Reset

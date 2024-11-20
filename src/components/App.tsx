@@ -7,6 +7,7 @@ import CreateContract from "./CreateContract";
 import ContractList from "./ContractList";
 import Admin from "./Admin";
 import ContractVersions from "./ContractVersions";
+import EditContract from "./EditContract";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           path="/contracts/:contractId/contract-documents"
           Component={ContractVersions}
         />
+        <Route path="/contracts/:contractId/edit" Component={EditContract} />
       </Routes>
     </BrowserRouter>
   );
