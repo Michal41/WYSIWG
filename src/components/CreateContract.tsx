@@ -56,6 +56,11 @@ const CreateContract = () => {
           )}
         </div>
       </div>
+      <button
+        onClick={() => console.log(blockEditorRef.current?.getMetadata())}
+      >
+        Get metadata
+      </button>
       <CreateContractMenu createContract={createContract} />
     </div>
   );

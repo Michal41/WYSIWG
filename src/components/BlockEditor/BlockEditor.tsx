@@ -20,17 +20,24 @@ interface BlockEditorProps {
   content: any;
 }
 
+export interface Metadata {
+  contractStartDate?: string;
+}
+
 export interface BlockEditorRef {
   getContent: () => any;
+  getMetadata: () => Metadata | null;
 }
 
 const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
   ({ content }, ref) => {
     const menuContainerRef = useRef(null);
+    const metadataRef = useRef<Metadata>({});
     const { editor } = useBlockEditor({ content });
 
     useImperativeHandle(ref, () => ({
       getContent: () => editor?.getJSON(),
+      getMetadata: () => metadataRef.current,
     }));
 
     if (!editor) {
@@ -52,7 +59,7 @@ const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
           <TableRowMenu editor={editor} appendTo={menuContainerRef} />
           <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
           <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
-          <DatepickerMenu editor={editor} appendTo={menuContainerRef} />
+          <DatepickerMenu editor={editor} metadataRef={metadataRef} />
           <button onClick={getCurrentContent}>Get Current Content</button>
         </div>
       </div>
