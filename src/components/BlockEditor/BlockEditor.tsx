@@ -15,7 +15,7 @@ import ImageBlockMenu from "@/extensions/ImageBlock/components/ImageBlockMenu";
 import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
-
+import { DatepickerMenu } from "../menus/DatePickerMenu";
 interface BlockEditorProps {
   content: any;
 }
@@ -52,6 +52,7 @@ const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
           <TableRowMenu editor={editor} appendTo={menuContainerRef} />
           <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
           <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
+          <DatepickerMenu editor={editor} appendTo={menuContainerRef} />
           <button onClick={getCurrentContent}>Get Current Content</button>
         </div>
       </div>

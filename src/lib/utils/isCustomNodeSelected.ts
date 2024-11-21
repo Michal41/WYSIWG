@@ -8,6 +8,7 @@ import {
   Link,
   CodeBlock,
 } from "@/extensions";
+import DatepickerMark from "@/extensions/DateMark";
 
 export const isTableGripSelected = (node: HTMLElement) => {
   let container = node;
@@ -41,6 +42,7 @@ export const isCustomNodeSelected = (editor: Editor, node: HTMLElement) => {
     ImageBlock.name,
     Link.name,
     Figcaption.name,
+    DatepickerMark.name,
   ];
 
   return (
