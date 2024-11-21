@@ -24,6 +24,8 @@ export interface Metadata {
   contractStartDate?: string;
 }
 
+export type MetadataTypes = "contractStartDate";
+
 export interface BlockEditorRef {
   getContent: () => any;
   getMetadata: () => Metadata | null;

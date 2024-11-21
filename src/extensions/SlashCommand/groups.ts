@@ -152,9 +152,13 @@ export const GROUPS: Group[] = [
         iconName: "Calendar",
         description: "Insert a date",
         action: (editor) => {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          //@ts-ignore
-          editor.chain().focus().setDatepickerPlaceholder().run();
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setDatepickerPlaceholder({ type: "contractStartDate" })
+            .run();
         },
       },
     ],

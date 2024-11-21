@@ -1,5 +1,12 @@
 import { Mark } from "@tiptap/core";
 
+const getPlaceholder = (type: string) => {
+  if (type === "contractStartDate") {
+    return `Select a Contract Start Date`;
+  }
+  return `Select a Time`;
+};
+
 const DatepickerMark = Mark.create({
   name: "datepickerTrigger",
 
@@ -7,6 +14,9 @@ const DatepickerMark = Mark.create({
     return {
       date: {
         default: null,
+      },
+      type: {
+        default: "date",
       },
     };
   },
@@ -24,8 +34,8 @@ const DatepickerMark = Mark.create({
       "span",
       {
         ...HTMLAttributes,
-        "data-datepicker-trigger": "", // Add a custom attribute
-        style: "background-color: #f0f8ff; color: #333; cursor: pointer;", // Optional styling
+        "data-datepicker-trigger": "",
+        style: "background-color: #f0f8ff; color: #333; cursor: pointer;",
       },
       0,
     ];
@@ -34,17 +44,17 @@ const DatepickerMark = Mark.create({
   addCommands() {
     return {
       setDatepickerPlaceholder:
-        () =>
+        ({ type = "date" }: { type?: string } = {}) =>
         ({ chain }) => {
           return chain()
             .focus()
             .insertContent({
               type: "text",
-              text: "Select a date", // Placeholder text
+              text: getPlaceholder(type),
               marks: [
                 {
                   type: "datepickerTrigger",
-                  attrs: { date: null },
+                  attrs: { [type]: null },
                 },
               ],
             })

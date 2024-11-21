@@ -2,7 +2,7 @@
 import React, { useCallback } from "react";
 import { BubbleMenu as BaseBubbleMenu, useEditorState } from "@tiptap/react";
 import { Surface } from "@/components/ui/Surface";
-import { Metadata } from "@/components/BlockEditor/BlockEditor";
+import { Metadata, MetadataTypes } from "@/components/BlockEditor/BlockEditor";
 export const DatepickerMenu = ({
   editor,
   metadataRef,
@@ -25,6 +25,9 @@ export const DatepickerMenu = ({
 
   const onSetDate = useCallback(
     (selectedDate: string) => {
+      const attrs = editor.getAttributes("datepickerTrigger");
+      const currentType: MetadataTypes = attrs.type;
+
       editor
         .chain()
         .focus()
@@ -36,7 +39,7 @@ export const DatepickerMenu = ({
         })
         .run();
       if (metadataRef.current) {
-        metadataRef.current.contractStartDate = selectedDate;
+        metadataRef.current[currentType] = selectedDate;
       }
     },
     [editor, metadataRef],
