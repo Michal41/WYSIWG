@@ -142,6 +142,23 @@ export const GROUPS: Group[] = [
       },
     ],
   },
+  {
+    name: "Meta Data",
+    title: "Meta Data",
+    commands: [
+      {
+        name: "date",
+        label: "Date",
+        iconName: "Calendar",
+        description: "Insert a date",
+        action: (editor) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          editor.chain().focus().setDatepickerPlaceholder().run();
+        },
+      },
+    ],
+  },
 ];
 
 export default GROUPS;
