@@ -177,17 +177,20 @@ export const GROUPS: Group[] = [
         },
       },
       {
-        name: "Contract Text Input",
-        label: "Contract Text Input",
+        name: "Liquefaction Rate",
+        label: "Liquefaction Rate",
         iconName: "Text",
-        description: "Insert a text input",
+        description: "Insert a liquefaction rate",
         action: (editor) => {
           editor
             .chain()
             .focus()
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
-            .setTextInputPlaceholder({ type: "contractTextInput" })
+            .setTextInputPlaceholder({
+              type: "liquefaction",
+              placeholder: "Enter liquefaction rate",
+            })
             .run();
         },
       },

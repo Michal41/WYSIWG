@@ -11,11 +11,11 @@ export const TextInputMenu = ({
   editor: any;
   metadataRef: React.RefObject<Metadata>;
 }): JSX.Element => {
-  const { value } = useEditorState({
+  const { value, placeholder } = useEditorState({
     editor,
     selector: (ctx) => {
       const attrs = ctx.editor.getAttributes("textInputTrigger");
-      return { value: attrs.value };
+      return { value: attrs.value, placeholder: attrs.placeholder };
     },
   });
 
@@ -53,7 +53,11 @@ export const TextInputMenu = ({
       shouldShow={shouldShow}
     >
       <Surface>
-        <TextInput initialValue={value || ""} onSubmit={onChange} />
+        <TextInput
+          initialValue={value || ""}
+          placeholder={placeholder || ""}
+          onSubmit={onChange}
+        />
       </Surface>
     </BaseBubbleMenu>
   );

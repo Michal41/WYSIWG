@@ -11,6 +11,9 @@ const TextInputMark = Mark.create({
       type: {
         default: "text",
       },
+      placeholder: {
+        default: null,
+      },
     };
   },
 
@@ -38,7 +41,10 @@ const TextInputMark = Mark.create({
   addCommands() {
     return {
       setTextInputPlaceholder:
-        ({ type = "text" }: { type?: string } = {}) =>
+        ({
+          type = "text",
+          placeholder = "Enter text",
+        }: { type?: string; placeholder?: string } = {}) =>
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         ({ chain }) => {
@@ -46,11 +52,11 @@ const TextInputMark = Mark.create({
             .focus()
             .insertContent({
               type: "text",
-              text: "placeholder",
+              text: placeholder,
               marks: [
                 {
                   type: "textInputTrigger",
-                  attrs: { value: null, type },
+                  attrs: { value: null, type, placeholder },
                 },
               ],
             })
