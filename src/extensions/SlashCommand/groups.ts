@@ -176,6 +176,21 @@ export const GROUPS: Group[] = [
             .run();
         },
       },
+      {
+        name: "Contract Text Input",
+        label: "Contract Text Input",
+        iconName: "Text",
+        description: "Insert a text input",
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setTextInputPlaceholder({ type: "contractTextInput" })
+            .run();
+        },
+      },
     ],
   },
 ];

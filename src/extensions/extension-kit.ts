@@ -44,6 +44,7 @@ import {
 import DateMark from "./DateMark";
 import { Mark } from "@tiptap/core";
 import { Pagination } from "./Pagination";
+import TextInputMark from "./TextInputMark";
 
 export const DeletionMark = Mark.create({
   name: "deletion",
@@ -98,6 +99,7 @@ export const ExtensionKit = () => [
   Columns,
   DateMark,
   Italic,
+  TextInputMark,
   Bold,
   Strike,
   Pagination.configure({
