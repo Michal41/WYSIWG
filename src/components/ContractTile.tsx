@@ -14,6 +14,16 @@ const ContractTile = ({ contract }: Props) => {
     >
       <p className="text-lg font-bold">{contract.name}</p>
       <p className="text-sm text-gray-500">{contract.clientName}</p>
+      {contract.metadata?.contractStartDate && (
+        <p className="text-sm text-gray-500">
+          Contract start date: {contract.metadata?.contractStartDate}
+        </p>
+      )}
+      {contract.metadata?.contractEndDate && (
+        <p className="text-sm text-gray-500">
+          Contract end date: {contract.metadata?.contractEndDate}
+        </p>
+      )}
     </div>
   );
 };

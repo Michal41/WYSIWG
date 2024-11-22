@@ -33,8 +33,6 @@ const CompareContractVersions = () => {
     }
   }, [contractVersionToId]);
 
-  console.log(diff);
-
   return (
     <div className="flex flex-col justify-center items-center gap-4 mt-4">
       <h1>Compare Contract Versions</h1>

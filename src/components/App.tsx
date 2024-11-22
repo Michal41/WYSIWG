@@ -9,6 +9,7 @@ import Admin from "./Admin";
 import ContractVersions from "./ContractVersions";
 import EditContract from "./EditContract";
 import CompareContractVersions from "./CompareContractVersions";
+import ThankYou from "./ThankYou";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           path="/contracts/:contractId/compare/:contractVersionFromId/:contractVersionToId"
           Component={CompareContractVersions}
         />
+        <Route path="/contract/thank-you" Component={ThankYou} />
       </Routes>
     </BrowserRouter>
   );

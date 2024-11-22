@@ -40,7 +40,7 @@ import {
   TaskList,
   Strike,
 } from ".";
-
+import DateMark from "./DateMark";
 import { Mark } from "@tiptap/core";
 
 export const DeletionMark = Mark.create({
@@ -94,6 +94,7 @@ export const AdditionMark = Mark.create({
 export const ExtensionKit = () => [
   Document,
   Columns,
+  DateMark,
   Italic,
   Bold,
   Strike,

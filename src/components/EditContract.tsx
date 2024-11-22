@@ -32,7 +32,12 @@ const EditContract = () => {
   const createNewVersionOfDocument = async () => {
     if (!contractId) return;
     const document = blockEditorRef.current?.getContent();
-    await create({ document: JSON.stringify(document), contractId });
+    const metaData = blockEditorRef.current?.getMetadata();
+    await create({
+      document: JSON.stringify(document),
+      contractId,
+      metaData: metaData ?? {},
+    });
     navigate("/contract/thank-you");
   };
 
