@@ -40,8 +40,10 @@ import {
   TaskList,
   Strike,
 } from ".";
+
 import DateMark from "./DateMark";
 import { Mark } from "@tiptap/core";
+import { Pagination } from "./Pagination";
 
 export const DeletionMark = Mark.create({
   name: "deletion",
@@ -98,6 +100,11 @@ export const ExtensionKit = () => [
   Italic,
   Bold,
   Strike,
+  Pagination.configure({
+    pageHeight: 1056,
+    pageWidth: 816,
+    pageMargin: 96,
+  }),
   Code,
   DeletionMark,
   AdditionMark,
