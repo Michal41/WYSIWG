@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { BubbleMenu as BaseBubbleMenu, useEditorState } from "@tiptap/react";
 import { Surface } from "@/components/ui/Surface";
 import { Metadata, MetadataTypes } from "@/components/BlockEditor/BlockEditor";
-
+import TextInput from "./TextInput";
 export const TextInputMenu = ({
   editor,
   metadataRef,
@@ -15,7 +15,6 @@ export const TextInputMenu = ({
     editor,
     selector: (ctx) => {
       const attrs = ctx.editor.getAttributes("textInputTrigger");
-      console.log("attrs", attrs);
       return { value: attrs.value };
     },
   });
@@ -54,16 +53,7 @@ export const TextInputMenu = ({
       shouldShow={shouldShow}
     >
       <Surface>
-        <div>
-          <input
-            type="text"
-            className=""
-            value={value || ""}
-            onChange={(e) => {
-              onChange(e.target.value);
-            }}
-          />
-        </div>
+        <TextInput initialValue={value || ""} onSubmit={onChange} />
       </Surface>
     </BaseBubbleMenu>
   );
