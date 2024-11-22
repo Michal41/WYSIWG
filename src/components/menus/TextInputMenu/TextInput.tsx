@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, icons } from "lucide-react";
+import { icons } from "lucide-react";
 
 interface Props {
   initialValue: string;

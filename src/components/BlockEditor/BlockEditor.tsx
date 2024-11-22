@@ -54,10 +54,10 @@ const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
       return null;
     }
 
-    const getCurrentContent = () => {
-      const content = editor.getJSON();
-      console.log(content);
-    };
+    // const getCurrentContent = () => {
+    //   const content = editor.getJSON();
+    //   console.log(content);
+    // };
 
     return (
       <div className="flex h-full" ref={menuContainerRef}>
