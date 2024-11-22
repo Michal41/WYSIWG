@@ -1,7 +1,8 @@
-import { Attribute, Extension } from '@tiptap/core';
-import { Plugin, PluginKey } from 'prosemirror-state';
-import { Decoration, DecorationSet } from 'prosemirror-view';
-import { Node } from 'prosemirror-model';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Attribute, Extension } from "@tiptap/core";
+import { Plugin, PluginKey } from "prosemirror-state";
+import { Decoration, DecorationSet } from "prosemirror-view";
+import { Node } from "prosemirror-model";
 
 export interface PaginationOptions {
   pageHeight: number;
@@ -9,7 +10,7 @@ export interface PaginationOptions {
   pageMargin: number;
 }
 
-declare module '@tiptap/core' {
+declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     pagination: {
       /**
@@ -21,7 +22,7 @@ declare module '@tiptap/core' {
 }
 
 export const Pagination = Extension.create<PaginationOptions>({
-  name: 'pagination',
+  name: "pagination",
 
   addOptions() {
     return {
@@ -37,7 +38,7 @@ export const Pagination = Extension.create<PaginationOptions>({
         (options: Partial<PaginationOptions>) =>
         ({ tr, dispatch }) => {
           if (dispatch) {
-            tr.setMeta('paginationOptions', options);
+            tr.setMeta("paginationOptions", options);
           }
           return true;
         },
@@ -45,7 +46,7 @@ export const Pagination = Extension.create<PaginationOptions>({
   },
 
   addProseMirrorPlugins() {
-    const pluginKey = new PluginKey('pagination');
+    const pluginKey = new PluginKey("pagination");
 
     return [
       new Plugin({
@@ -53,7 +54,7 @@ export const Pagination = Extension.create<PaginationOptions>({
         state: {
           init: () => ({ ...this.options }),
           apply: (tr, value) => {
-            const newOptions = tr.getMeta('paginationOptions');
+            const newOptions = tr.getMeta("paginationOptions");
             if (newOptions) {
               return { ...value, ...newOptions };
             }
@@ -70,37 +71,31 @@ export const Pagination = Extension.create<PaginationOptions>({
 
             doc.descendants((node: Node, pos: number) => {
               const { pageHeight, pageMargin } = options;
-
-              console.log(this.editor.view.nodeDOM(pos), 'editor');
-
               let nodeHeight = 0;
-              
-              const nodeDOM = this.editor.view.nodeDOM(pos) as HTMLElement | null;
-              if (node.isBlock && nodeDOM) {
+              const nodeDOM = this.editor.view.nodeDOM(
+                pos,
+              ) as HTMLElement | null;
+              if (node.isBlock && nodeDOM && nodeDOM instanceof HTMLElement) {
                 const computedStyle = window.getComputedStyle(nodeDOM);
                 const marginHeight =
                   parseFloat(computedStyle.marginTop) +
                   parseFloat(computedStyle.marginBottom);
-                  nodeHeight = nodeDOM.getBoundingClientRect().height + marginHeight;
-                // Use nodeHeight in the pagination logic
+                nodeHeight =
+                  nodeDOM.getBoundingClientRect().height + marginHeight;
               }
-
-              // const nodeHeight = node.isBlock
-              //   ? (this.editor.view.nodeDOM(pos) as HTMLElement)?.offsetHeight
-              //   : 0;
 
               if (currentHeight + nodeHeight > pageHeight - 2 * pageMargin) {
                 decorations.push(
                   Decoration.widget(pos, () => {
-                    const pageBreak = document.createElement('div');
-                    pageBreak.className = 'page-break';
-                    pageBreak.style.height = '20px';
-                    pageBreak.style.width = '100%';
-                    pageBreak.style.borderTop = '2px dashed black';
-                    pageBreak.style.marginTop = '10px';
-                    pageBreak.style.marginBottom = '10px';
+                    const pageBreak = document.createElement("div");
+                    pageBreak.className = "page-break";
+                    pageBreak.style.height = "20px";
+                    pageBreak.style.width = "100%";
+                    pageBreak.style.borderTop = "2px dashed black";
+                    pageBreak.style.marginTop = "10px";
+                    pageBreak.style.marginBottom = "10px";
                     return pageBreak;
-                  })
+                  }),
                 );
                 currentHeight = 0;
               }
@@ -118,11 +113,13 @@ export const Pagination = Extension.create<PaginationOptions>({
   addGlobalAttributes() {
     return [
       {
-        types: ['textStyle'],
+        types: ["textStyle"],
         attributes: {
           class: {
             default: null,
-            parseHTML: (element: HTMLElement) => element.getAttribute('class'),
+            parseHTML: (element: HTMLElement) => element.getAttribute("class"),
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             renderHTML: (attributes: Record<string, any>) => {
               if (!attributes.class) {
                 return {};

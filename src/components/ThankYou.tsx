@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const ThankYou = () => {
   return (
@@ -8,6 +8,6 @@ const ThankYou = () => {
       </h1>
     </div>
   );
-}
+};
 
 export default ThankYou;
