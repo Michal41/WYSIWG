@@ -10,6 +10,7 @@ export interface IContract extends Document {
     contractStartDate?: string;
     contractEndDate?: string;
     liquefaction?: string;
+    customerName?: string;
   };
 }
 

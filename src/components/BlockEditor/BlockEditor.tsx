@@ -25,12 +25,14 @@ export interface Metadata {
   contractStartDate?: string;
   contractEndDate?: string;
   liquefaction?: string;
+  customerName?: string;
 }
 
 export type MetadataTypes =
   | "contractStartDate"
   | "contractEndDate"
-  | "liquefaction";
+  | "liquefaction"
+  | "customerName";
 
 export interface BlockEditorRef {
   getContent: () => any;

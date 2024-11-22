@@ -194,6 +194,24 @@ export const GROUPS: Group[] = [
             .run();
         },
       },
+      {
+        name: "Customer Name",
+        label: "Customer Name",
+        iconName: "User",
+        description: "Insert a customer name",
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setTextInputPlaceholder({
+              type: "customerName",
+              placeholder: "Enter customer name",
+            })
+            .run();
+        },
+      },
     ],
   },
 ];

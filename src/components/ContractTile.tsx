@@ -30,6 +30,11 @@ const ContractTile = ({ contract }: Props) => {
           Liquefaction rate: {contract.metadata?.liquefaction}
         </p>
       )}
+      {contract.metadata?.customerName && (
+        <p className="text-sm text-gray-500">
+          Customer name: {contract.metadata?.customerName}
+        </p>
+      )}
     </div>
   );
 };
