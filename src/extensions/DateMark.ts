@@ -4,7 +4,7 @@ const getPlaceholder = (type: string) => {
   if (type === "contractStartDate") {
     return `Select a Contract Start Date`;
   }
-  return `Select a Time`;
+  return `Select a Date`;
 };
 
 const DatepickerMark = Mark.create({
@@ -54,7 +54,7 @@ const DatepickerMark = Mark.create({
               marks: [
                 {
                   type: "datepickerTrigger",
-                  attrs: { [type]: null },
+                  attrs: { date: null, type },
                 },
               ],
             })
