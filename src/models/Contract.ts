@@ -6,6 +6,9 @@ export interface IContract extends Document {
   createdAt?: Date;
   updatedAt?: Date;
   _id: string;
+  metadata: {
+    contractStartDate?: string;
+  };
 }
 
 const ContractSchema: Schema = new Schema(
@@ -14,6 +17,10 @@ const ContractSchema: Schema = new Schema(
     clientName: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
+    metadata: {
+      type: Object,
+      default: {},
+    },
   },
   { timestamps: true },
 );

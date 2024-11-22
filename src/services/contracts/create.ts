@@ -16,6 +16,7 @@ export async function create(data: CreateContractData) {
   const contract: IContract = new Contract({
     name: data.name,
     clientName: data.clientName,
+    metadata: { contractStartDate: "" },
   });
   await contract.save();
   const contractId = contract._id;
