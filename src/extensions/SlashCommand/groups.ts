@@ -176,6 +176,42 @@ export const GROUPS: Group[] = [
             .run();
         },
       },
+      {
+        name: "Liquefaction Rate",
+        label: "Liquefaction Rate",
+        iconName: "Text",
+        description: "Insert a liquefaction rate",
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setTextInputPlaceholder({
+              type: "liquefaction",
+              placeholder: "Enter liquefaction rate",
+            })
+            .run();
+        },
+      },
+      {
+        name: "Customer Name",
+        label: "Customer Name",
+        iconName: "User",
+        description: "Insert a customer name",
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setTextInputPlaceholder({
+              type: "customerName",
+              placeholder: "Enter customer name",
+            })
+            .run();
+        },
+      },
     ],
   },
 ];

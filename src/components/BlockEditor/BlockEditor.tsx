@@ -16,6 +16,7 @@ import { ColumnsMenu } from "@/extensions/MultiColumn/menus";
 import { TableColumnMenu, TableRowMenu } from "@/extensions/Table/menus";
 import { TextMenu } from "../menus/TextMenu";
 import { DatepickerMenu } from "../menus/DatePickerMenu";
+import { TextInputMenu } from "../menus/TextInputMenu";
 interface BlockEditorProps {
   content: any;
 }
@@ -23,9 +24,15 @@ interface BlockEditorProps {
 export interface Metadata {
   contractStartDate?: string;
   contractEndDate?: string;
+  liquefaction?: string;
+  customerName?: string;
 }
 
-export type MetadataTypes = "contractStartDate" | "contractEndDate";
+export type MetadataTypes =
+  | "contractStartDate"
+  | "contractEndDate"
+  | "liquefaction"
+  | "customerName";
 
 export interface BlockEditorRef {
   getContent: () => any;
@@ -47,10 +54,10 @@ const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
       return null;
     }
 
-    const getCurrentContent = () => {
-      const content = editor.getJSON();
-      console.log(content);
-    };
+    // const getCurrentContent = () => {
+    //   const content = editor.getJSON();
+    //   console.log(content);
+    // };
 
     return (
       <div className="flex h-full" ref={menuContainerRef}>
@@ -63,7 +70,8 @@ const BlockEditor = React.forwardRef<BlockEditorRef, BlockEditorProps>(
           <TableColumnMenu editor={editor} appendTo={menuContainerRef} />
           <ImageBlockMenu editor={editor} appendTo={menuContainerRef} />
           <DatepickerMenu editor={editor} metadataRef={metadataRef} />
-          <button onClick={getCurrentContent}>Get Current Content</button>
+          <TextInputMenu editor={editor} metadataRef={metadataRef} />
+          {/* <button onClick={getCurrentContent}>Get Current Content</button> */}
         </div>
       </div>
     );

@@ -7,6 +7,7 @@ type Props = {
 
 const ContractTile = ({ contract }: Props) => {
   const navigate = useNavigate();
+  console.log("contract", contract);
   return (
     <div
       className="flex flex-col justify-center items-center border border-gray-300 rounded-md p-4 cursor-pointer"
@@ -22,6 +23,16 @@ const ContractTile = ({ contract }: Props) => {
       {contract.metadata?.contractEndDate && (
         <p className="text-sm text-gray-500">
           Contract end date: {contract.metadata?.contractEndDate}
+        </p>
+      )}
+      {contract.metadata?.liquefaction && (
+        <p className="text-sm text-gray-500">
+          Liquefaction rate: {contract.metadata?.liquefaction}
+        </p>
+      )}
+      {contract.metadata?.customerName && (
+        <p className="text-sm text-gray-500">
+          Customer name: {contract.metadata?.customerName}
         </p>
       )}
     </div>

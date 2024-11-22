@@ -9,6 +9,8 @@ export interface IContract extends Document {
   metadata: {
     contractStartDate?: string;
     contractEndDate?: string;
+    liquefaction?: string;
+    customerName?: string;
   };
 }
 
