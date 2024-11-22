@@ -43,11 +43,14 @@ const DatepickerMark = Mark.create({
       0,
     ];
   },
-
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
   addCommands() {
     return {
       setDatepickerPlaceholder:
         ({ type = "date" }: { type?: string } = {}) =>
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
         ({ chain }) => {
           return chain()
             .focus()
