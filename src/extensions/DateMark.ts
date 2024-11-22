@@ -4,6 +4,9 @@ const getPlaceholder = (type: string) => {
   if (type === "contractStartDate") {
     return `Select a Contract Start Date`;
   }
+  if (type === "contractEndDate") {
+    return `Select a Contract End Date`;
+  }
   return `Select a Date`;
 };
 

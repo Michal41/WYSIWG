@@ -22,9 +22,10 @@ interface BlockEditorProps {
 
 export interface Metadata {
   contractStartDate?: string;
+  contractEndDate?: string;
 }
 
-export type MetadataTypes = "contractStartDate";
+export type MetadataTypes = "contractStartDate" | "contractEndDate";
 
 export interface BlockEditorRef {
   getContent: () => any;

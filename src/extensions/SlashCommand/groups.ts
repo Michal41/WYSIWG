@@ -147,8 +147,8 @@ export const GROUPS: Group[] = [
     title: "Meta Data",
     commands: [
       {
-        name: "date",
-        label: "Date",
+        name: "Contract Start Date",
+        label: "Contract Start Date",
         iconName: "Calendar",
         description: "Insert a date",
         action: (editor) => {
@@ -158,6 +158,21 @@ export const GROUPS: Group[] = [
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             .setDatepickerPlaceholder({ type: "contractStartDate" })
+            .run();
+        },
+      },
+      {
+        name: "Contract End Date",
+        label: "Contract End Date",
+        iconName: "Calendar",
+        description: "Insert a date",
+        action: (editor) => {
+          editor
+            .chain()
+            .focus()
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            .setDatepickerPlaceholder({ type: "contractEndDate" })
             .run();
         },
       },

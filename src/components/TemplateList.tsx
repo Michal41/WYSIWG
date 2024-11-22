@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { index } from "@/services/contractTemplates";
 import { IContractTemplate } from "@/models/ContractTemplate";
 import TemplateTile from "./TemplateTile";
+import { Link } from "react-router-dom";
 const TemplateList = () => {
   const [templates, setTemplates] = useState<IContractTemplate[]>([]);
   useEffect(() => {
@@ -18,6 +19,12 @@ const TemplateList = () => {
       {templates.map((template) => (
         <TemplateTile key={template._id} template={template} />
       ))}
+
+      <Link to="/contracts">
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+          View Contracts
+        </button>
+      </Link>
     </div>
   );
 };

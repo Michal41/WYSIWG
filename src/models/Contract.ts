@@ -8,6 +8,7 @@ export interface IContract extends Document {
   _id: string;
   metadata: {
     contractStartDate?: string;
+    contractEndDate?: string;
   };
 }
 
